@@ -1,0 +1,25 @@
+version: '3.1'
+
+services: 
+  web:
+    build: . 
+    volumes: 
+      - "./www:/var/www/html"
+    ports: 
+      - "8000:80"
+    
+  db:
+    image: mysql:5.7
+    restart: always
+    volumes: 
+      - "./.docker/dbdata:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: "A_1234567"
+
+  my:
+    image: phpmyadmin
+    restart: always
+    ports: 
+      - "8080:80"
+
+#https://dev.to/veevidify/docker-compose-up-your-entire-laravel-apache-mysql-development-environment-45ea
